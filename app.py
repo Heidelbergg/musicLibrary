@@ -3,8 +3,13 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
+@app.route('/music')
+def music_page():  # put application's code here
+    return render_template('temp.html')
+
+
 @app.route('/')
-def hello_world():  # put application's code here
+def landing_page():  # put application's code here
     return render_template('index.html')
 
 
