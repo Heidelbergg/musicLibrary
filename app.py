@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/music')
 def music_page():  # put application's code here
-    return render_template('temp.html')
+    return render_template('add_music.html')
 
 
 @app.route('/')
