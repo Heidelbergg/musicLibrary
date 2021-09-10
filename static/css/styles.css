@@ -11507,5 +11507,5 @@ html {
 .form__submit:hover {
   background-color: #1c2023;
   color: white;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
