@@ -11457,7 +11457,7 @@ html {
   position: absolute;
   top: 0;
   left: 0;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   opacity: 0;
   background-color: rgba(26, 188, 156, 0.9);
 }
@@ -11507,5 +11507,5 @@ html {
 .form__submit:hover {
   background-color: #1c2023;
   color: white;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
