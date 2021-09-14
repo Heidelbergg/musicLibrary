@@ -2154,6 +2154,7 @@ progress {
 }
 .form-label {
   margin-bottom: 0.5rem;
+  position: relative;
 }
 
 .col-form-label {
@@ -11508,4 +11509,24 @@ html {
   background-color: #1c2023;
   color: white;
   transition: all 0.3s ease-in-out;
+}
+
+.add_track {
+  position: absolute;
+  padding: 5px 226px;
+  background-color: unset;
+  border: 2px solid #1c2023;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.add_track:hover {
+  background-color: #1c2023;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.tracks_output{
+  font-size: 14px;
 }

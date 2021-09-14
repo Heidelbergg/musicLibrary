@@ -187,22 +187,20 @@
                 <label for="inputDescription" class="form-label">Description</label>
                 <input type="text" class="form-control" id="inputDescription">
             </div>
-            <div class="col-6">
+            <div class="col-6 mx-auto">
                 <label for="inputTracks" class="form-label">Tracks</label>
-                <select id="inputTracks" class="form-select">
-                    <option selected>Choose...</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>6</option>
-                    <option>6</option>
-                    <option>6</option>
-                    <option>6</option>
-                </select>
+                <input type="text" class="form-control" id="inputTracks">
+                <button type="button" id="add_track" class="add_track" onclick="addTrack()">Add Track</button>
+                <p id="tracktextarea"><br></p>
             </div>
+
+            <script>
+                function addTrack(){
+                    let track = document.getElementById("inputTracks").value;
+                    document.getElementById("tracktextarea").innerHTML = '';
+                    console.log(track);
+                }
+            </script>
 
             <div class="col-12 mx-auto">
                 <button type="submit" class="form__submit">Submit</button>
