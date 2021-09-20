@@ -69,14 +69,16 @@
             <div class="divider-custom-line"></div>
         </div>
         <!-- Form-->
-        <form class="row g-4 mx-auto col-10 lead">
+        <form class="row g-4 mx-auto col-10 lead" method="post" id="music_form">
+            <!-- Name-->
             <div class="col-6 mx-auto">
                 <label for="inputName" class="form-label">Name</label>
-                <input type="name" class="form-control" id="inputName">
+                <input type="name" class="form-control" id="inputName" required>
             </div>
+            <!-- Release Year-->
             <div class="col-6">
                 <label for="chooseYear" class="form-label">Release Year</label>
-                <select id="chooseYear" class="form-select">
+                <select id="chooseYear" class="form-select" required>
                     <option selected>Choose...</option>
                     <option value="1950">1950</option>
                     <option value="1951">1951</option>
@@ -152,6 +154,7 @@
                     <option value="2021">2021</option>
                 </select>
             </div>
+            <!-- Artist-->
             <div class="col-6 mx-auto">
                 <label for="chooseArtist" class="form-label">Artist</label>
                 <select id="chooseArtist" class="form-select">
@@ -162,8 +165,11 @@
                     <option>The Butlers</option>
                     <option>The Satins</option>
                     <option>Bobby Rydell</option>
+                    <option>The Elegants</option>
                 </select>
             </div>
+
+            <!-- Type-->
             <div class="col-6">
                 <label for="radioType" class="form-label">Type</label>
                 <br>
@@ -183,30 +189,64 @@
                     <label class="form-check-label" for="inlineRadio3">Album</label>
                 </div>
             </div>
+
+            <!-- Description-->
             <div class="col-6 mx-auto">
                 <label for="inputDescription" class="form-label">Description</label>
                 <input type="text" class="form-control" id="inputDescription">
             </div>
-            <div class="col-6 mx-auto">
-                <label for="inputTracks" class="form-label">Tracks</label>
-                <input type="text" class="form-control" id="inputTracks">
-                <button type="button" id="add_track" class="add_track" onclick="addTrack()">Add Track</button>
-                <p id="tracktextarea"><br></p>
+
+            <!-- Track-->
+            <div class="col-3 mx-auto">
+                <label for="inputTracks" class="form-label">Track</label>
+                <input type="text" class="form-control" id="inputTracks" required>
+                <br>
+                <p class="trackstext" id="tracktextarea"></p>
+                <br>
             </div>
 
+            <div class="col-3 mx-auto">
+                <button type="button" id="add_track" class="add_track" onclick="addTrack()">Add Track</button>
+                <br>
+                <button type="button" id="removeBtn" class="remove_tracks">Remove All Tracks</button>
+
+            </div>
+
+
+            <!-- Add Track to list-->
             <script>
-                function addTrack(){
-                    let track = document.getElementById("inputTracks").value;
-                    document.getElementById("tracktextarea").innerHTML = '';
-                    console.log(track);
+                function addTrack() {
+                    let track = document.getElementById("tracktextarea");
+                    let paragraph = document.createElement("p");
+                    paragraph.textContent = document.getElementById("inputTracks").value;
+                    // field cant be empty
+                    document.getElementById("inputTracks").value !== "" ? track.appendChild(paragraph) : console.log("no input");
+                    // Remove track on click
+                    document.getElementById("removeBtn").addEventListener("click", function () {
+                        track.removeChild(paragraph);
+                        document.getElementById("edittrack").style.display = "none";
+                    });
                 }
             </script>
 
-            <div class="col-12 mx-auto">
-                <button type="submit" class="form__submit">Submit</button>
-            </div>
 
+            <!-- Submit the track-->
+            <div class="col-12 mx-auto">
+                <button type="submit" class="form__submit" id="btnSubmit">Submit</button>
+            </div>
         </form>
+
+        <script>
+            function handleSubmit(event){
+                event.preventDefault();
+                const data = new FormData(event.target);
+                const value = Object.fromEntries(data.entries());
+                value.topics = data.getAll("topics");
+                console.log({value});
+            }
+            const form = document.querySelector('#music_form');
+            form.addEventListener('submit', handleSubmit);
+        </script>
     </div>
     </div>
 </section>
