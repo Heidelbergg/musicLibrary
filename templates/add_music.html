@@ -77,23 +77,19 @@
             </div>
             <!-- Release Year-->
             <div class="col-6">
-                <label for="chooseYear" class="form-label">Release Year</label>
+                <label for="year" class="form-label">Release Year</label>
                 <select id="year" class="form-select" required>
                     <option selected>Choose...</option>
                     <option>&nbsp;</option>
                 </select>
             </div>
             <script>
-                // get selectbox
+                // Add years to dropdown
                 var selectBox = document.getElementById('year');
-                // loop through years
-                for (var i = 2050; i >= 1900; i--) {
-                    // create option element
+                for (var i = 2021; i >= 1900; i--) {
                     var option = document.createElement('option');
-                    // add value and text name
                     option.value = i;
                     option.innerHTML = i;
-                    // add the option element to the selectbox
                     selectBox.appendChild(option);
                 }
             </script>
@@ -194,7 +190,7 @@
 
             function handleSubmit(event) {
                 let name = document.getElementById("inputName").value;
-                let year = document.getElementById("chooseYear").value;
+                let year = document.getElementById("year").value;
                 let artist = document.getElementById("chooseArtist").value;
                 let type = getRadio();
                 let description = document.getElementById("inputDescription").value;
