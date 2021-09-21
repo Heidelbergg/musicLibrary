@@ -68,7 +68,7 @@
                     <div class="col-md-6 col-lg-4 mb-5">
                         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><p class="font-weight-light mb-0">Read More</p></div>
+                                <div class="portfolio-item-caption-content text-center text-white"><p class="font-weight-light mb-0" onclick="albumInfo()">Read More</p></div>
                             </div>
                             <img class="img-fluid" src="/static/assets/img/portfolio/vinyl.png" alt="..." />
                         </div>
@@ -76,6 +76,13 @@
                 </div>
             </div>
         </section>
+
+        <script>
+            function albumInfo(){
+                //paste json to "portfolio_text"
+
+            }
+        </script>
         <!-- About Section-->
         <section class="page-section bg-primary text-white mb-0" id="about">
             <div class="container">
@@ -209,7 +216,7 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="/static/assets/img/portfolio/vinyl.png" alt="..." />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <p class="mb-4" id="portfolio_text"></p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window

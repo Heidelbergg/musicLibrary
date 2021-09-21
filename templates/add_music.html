@@ -212,7 +212,6 @@
 
             </div>
 
-
             <!-- Add Track to list-->
             <script>
                 function addTrack() {
@@ -229,7 +228,6 @@
                 }
             </script>
 
-
             <!-- Submit the track-->
             <div class="col-12 mx-auto">
                 <button type="submit" class="form__submit" id="btnSubmit">Submit</button>
@@ -237,29 +235,51 @@
         </form>
 
         <script>
-            function getRadio (){
+            function getRadio() {
                 let single = document.getElementById("inlineRadio1");
                 let ep = document.getElementById("inlineRadio2");
                 let album = document.getElementById("inlineRadio3");
 
-                if (single.checked){
+                if (single.checked) {
                     return "single";
-                } else if (ep.checked){
+                } else if (ep.checked) {
                     return "ep";
-                } else  if (album.checked){
+                } else if (album.checked) {
                     return "album";
                 }
             }
-            function handleSubmit(event){
+
+            function handleSubmit(event) {
                 let name = document.getElementById("inputName").value;
                 let year = document.getElementById("chooseYear").value;
                 let artist = document.getElementById("chooseArtist").value;
                 let type = getRadio();
                 let description = document.getElementById("inputDescription").value;
                 let tracks = document.getElementById("tracktextarea").value;
+
                 event.preventDefault();
-                console.log(JSON.stringify({name,year,artist,type,description,tracks}))
+                const object = JSON.stringify({name, year, artist, type, description, tracks});
+                console.log(object);
+
+                // POST
+
+                var url = "https://hub.docker.com/r/jazerix/rest-albums";
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", url);
+
+                xhr.setRequestHeader("Accept", "application/json");
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        console.log(xhr.status);
+                        console.log(xhr.responseText);
+                    }
+                };
+                xhr.send(object);
             }
+
             const form = document.querySelector('form#music_form');
             form.addEventListener('submit', handleSubmit);
         </script>
