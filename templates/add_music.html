@@ -73,7 +73,7 @@
             <!-- Name-->
             <div class="col-6 mx-auto">
                 <label for="inputName" class="form-label">Name</label>
-                <input type="name" class="form-control" id="inputName" required>
+                <input type="text" class="form-control" id="inputName" name="name" required>
             </div>
             <!-- Release Year-->
             <div class="col-6">
@@ -162,7 +162,6 @@
                     // Remove track on click
                     document.getElementById("removeBtn").addEventListener("click", function () {
                         track.removeChild(paragraph);
-                        document.getElementById("edittrack").style.display = "none";
                     });
                 }
             </script>
@@ -189,7 +188,7 @@
             }
 
             function handleSubmit(event) {
-                let name = document.getElementById("inputName").value;
+               {# let name = document.getElementById("inputName").value;
                 let year = document.getElementById("year").value;
                 let artist = document.getElementById("chooseArtist").value;
                 let type = getRadio();
@@ -198,25 +197,27 @@
 
                 event.preventDefault();
                 const object = JSON.stringify({name, year, artist, type, description, tracks});
-                console.log(object);
+                console.log(object);#}
 
                 // POST to server - https://reqbin.com/req/4rwevrqh/post-json-example
 
-                var url = "https://hub.docker.com/r/jazerix/rest-albums";
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", url);
-                xhr.setRequestHeader("Accept", "application/json");
-                xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4) {
-                        console.log(xhr.status);
-                        console.log(xhr.responseText);
-                    }
-                };
-                xhr.send(object);
+ {#               let music_form = document.getElementById('music_form');
+                let formData = new FormData(music_form);
+
+                fetch('http://localhost:8080', {
+                    method: 'PUT',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log('Success:', result);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+#}
+
             }
-            const form = document.querySelector('form#music_form');
-            form.addEventListener('submit', handleSubmit);
         </script>
     </div>
     </div>
