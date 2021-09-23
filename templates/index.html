@@ -67,8 +67,8 @@
                     <!-- Portfolio Item-->
                     <div class="col-md-6 col-lg-4 mb-5">
                         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><p class="font-weight-light mb-0" onclick="albumInfo()">Read More</p></div>
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100" id="read_more_hover">
+                                <div class="portfolio-item-caption-content text-center text-white" id="read_more_btn"><p class="font-weight-light mb-0">Read More</p></div>
                             </div>
                             <img class="img-fluid" src="/static/assets/img/portfolio/vinyl.png" alt="..." />
                         </div>
@@ -78,10 +78,23 @@
         </section>
 
         <script>
-            function albumInfo(){
                 //paste json to "portfolio_text"
-
-            }
+                document.getElementById("read_more_btn" && "read_more_hover").addEventListener('click', loadJSON);
+                function loadJSON(){
+                    fetch('http://localhost:8000/')
+                    .then(function (response){
+                        return response.json();
+                    })
+                    .then(function (data){
+                        console.log(data);
+                        let html = '';
+                        data.forEach(function (albums){
+                            html += `<li>${albums.name}</li>`;
+                        });
+                        // insert into html
+                        document.getElementById("portfolio_text").innerHTML = html;
+                    });
+                }
         </script>
         <!-- About Section-->
         <section class="page-section bg-primary text-white mb-0" id="about">
@@ -216,7 +229,7 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="/static/assets/img/portfolio/vinyl.png" alt="..." />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4" id="portfolio_text"></p>
+                                    <p class="mb-4" id="portfolio_text">Added albums:</p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window

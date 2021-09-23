@@ -77,17 +77,16 @@
             </div>
             <!-- Release Year-->
             <div class="col-6">
-                <label for="year" class="form-label">Release Year</label>
-                <select id="year" class="form-select" required>
+                <label for="inputYear" class="form-label">Release Year</label>
+                <select id="inputYear" class="form-select" name="year" required>
                     <option selected>Choose...</option>
-                    <option>&nbsp;</option>
                 </select>
             </div>
             <script>
                 // Add years to dropdown
-                var selectBox = document.getElementById('year');
-                for (var i = 2021; i >= 1900; i--) {
-                    var option = document.createElement('option');
+                let selectBox = document.getElementById('inputYear');
+                for (let i = 2021; i >= 1900; i--) {
+                    let option = document.createElement('option');
                     option.value = i;
                     option.innerHTML = i;
                     selectBox.appendChild(option);
@@ -96,7 +95,7 @@
             <!-- Artist-->
             <div class="col-6 mx-auto">
                 <label for="chooseArtist" class="form-label">Artist</label>
-                <select id="chooseArtist" class="form-select">
+                <select id="chooseArtist" class="form-select" name="artist" form="">
                     <option selected>Choose...</option>
                     <option>Dion and The Belmonts</option>
                     <option>Elvis Presley</option>
@@ -132,7 +131,7 @@
             <!-- Description-->
             <div class="col-6 mx-auto">
                 <label for="inputDescription" class="form-label">Description</label>
-                <input type="text" class="form-control" id="inputDescription">
+                <input type="text" class="form-control" id="inputDescription" name="description">
             </div>
 
             <!-- Track-->
@@ -148,7 +147,6 @@
                 <button type="button" id="add_track" class="add_track" onclick="addTrack()">Add Track</button>
                 <br>
                 <button type="button" id="removeBtn" class="remove_tracks">Remove All Tracks</button>
-
             </div>
 
             <!-- Add Track to list-->
@@ -165,14 +163,13 @@
                     });
                 }
             </script>
-
             <!-- Submit the track-->
             <div class="col-12 mx-auto">
-                <button type="submit" class="form__submit" id="btnSubmit">Submit</button>
+                <button type="submit" class="form__submit">Submit</button>
             </div>
         </form>
 
-        <script>
+        {#<script>
             function getRadio() {
                 let single = document.getElementById("inlineRadio1");
                 let ep = document.getElementById("inlineRadio2");
@@ -185,10 +182,9 @@
                 } else if (album.checked) {
                     return "album";
                 }
-            }
-
-            function handleSubmit(event) {
-               {# let name = document.getElementById("inputName").value;
+            }#}
+            {#function handleSubmit(event) {
+                let name = document.getElementById("inputName").value;
                 let year = document.getElementById("year").value;
                 let artist = document.getElementById("chooseArtist").value;
                 let type = getRadio();
@@ -197,11 +193,11 @@
 
                 event.preventDefault();
                 const object = JSON.stringify({name, year, artist, type, description, tracks});
-                console.log(object);#}
+                console.log(object);
 
                 // POST to server - https://reqbin.com/req/4rwevrqh/post-json-example
 
- {#               let music_form = document.getElementById('music_form');
+                let music_form = document.getElementById('music_form');
                 let formData = new FormData(music_form);
 
                 fetch('http://localhost:8080', {
@@ -215,11 +211,9 @@
                     .catch(error => {
                         console.error('Error:', error);
                     });
-#}
 
             }
-        </script>
-    </div>
+        </script>#}
     </div>
 </section>
 <!-- Footer-->
